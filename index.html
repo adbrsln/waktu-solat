@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waktu Solat Malaysia</title>
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0f2027">
+    <link rel="icon" type="image/svg+xml" href="icon.svg">
+    <link rel="apple-touch-icon" href="icon.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background-gradient"></div>
+    <div class="glass-container">
+        <header>
+            <div class="location-badge" id="location-badge">
+                <span class="icon">📍</span>
+                <span id="location-text">Locating...</span>
+            </div>
+            <div class="date-display">
+                <h1 id="current-time">--:--</h1>
+                <p id="current-date">Loading date...</p>
+                <p id="hijri-date" class="hijri">...</p>
+            </div>
+        </header>
+
+        <main>
+            <div class="countdown-card">
+                <p class="label">Next Prayer</p>
+                <h2 id="next-prayer-name">--</h2>
+                <h1 id="countdown-timer">--:--:--</h1>
+            </div>
+
+            <div class="prayer-grid" id="prayer-grid">
+                <!-- Prayer items will be injected here -->
+                <div class="prayer-item skeleton"></div>
+                <div class="prayer-item skeleton"></div>
+                <div class="prayer-item skeleton"></div>
+                <div class="prayer-item skeleton"></div>
+                <div class="prayer-item skeleton"></div>
+                <div class="prayer-item skeleton"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Data from JAKIM via e-solat.gov.my</p>
+            <button id="retry-btn" class="hidden">Retry Location</button>
+            <div id="manual-selector" class="hidden">
+                <select id="state-select">
+                    <option value="">Select State</option>
+                </select>
+            </div>
+        </footer>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>

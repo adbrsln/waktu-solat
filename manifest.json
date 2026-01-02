@@ -1,0 +1,18 @@
+{
+    "name": "Waktu Solat Malaysia",
+    "short_name": "Waktu Solat",
+    "description": "Premium Waktu Solat App for Malaysia",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#0f2027",
+    "theme_color": "#0f2027",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "icon.svg",
+            "type": "image/svg+xml",
+            "sizes": "any",
+            "purpose": "any maskable"
+        }
+    ]
+}

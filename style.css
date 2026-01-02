@@ -1,0 +1,350 @@
+:root {
+    --primary-color: #ffffff;
+    --accent-color: #ffd700;
+    /* Gold */
+    --accent-secondary: #00d2ff;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --text-color: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.7);
+    --shadow-light: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    --font-main: 'Outfit', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--text-color);
+    background: #0f2027;
+    /* Fallback */
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    /* Deep space/ocean gradient */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+/* Dynamic Background container */
+.background-gradient {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    opacity: 0.6;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Glass Container */
+.glass-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: var(--shadow-light);
+    padding: 2rem;
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header */
+header {
+    margin-bottom: 2rem;
+}
+
+.location-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.location-badge:hover {
+    background: rgba(0, 0, 0, 0.4);
+    transform: scale(1.05);
+}
+
+.location-badge .icon {
+    margin-right: 0.5rem;
+}
+
+.date-display h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: -2px;
+    margin-bottom: 0.2rem;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.date-display #current-date {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--text-muted);
+}
+
+.date-display .hijri {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--accent-color);
+    margin-top: 0.2rem;
+}
+
+/* Countdown Card */
+.countdown-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.countdown-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+}
+
+.countdown-card:hover::before {
+    opacity: 1;
+}
+
+.countdown-card .label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+}
+
+.countdown-card #next-prayer-name {
+    font-size: 1.8rem;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+}
+
+.countdown-card #countdown-timer {
+    font-size: 2.5rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Prayer Grid */
+.prayer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 columns for better balance */
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.prayer-item {
+    background: rgba(255, 255, 255, 0.05);
+    /* Very subtle */
+    padding: 1rem;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.prayer-item.active {
+    background: rgba(255, 215, 0, 0.1);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+    transform: scale(1.02);
+}
+
+.prayer-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.prayer-item .name {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.prayer-item .time {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--accent-secondary);
+}
+
+.prayer-item.active .time {
+    color: var(--accent-color);
+}
+
+/* Skeleton Loading */
+.skeleton {
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 0.6;
+    }
+}
+
+/* Footer & Controls */
+footer {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+#retry-btn {
+    background: transparent;
+    border: 1px solid var(--text-muted);
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+#retry-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--text-color);
+}
+
+#manual-selector {
+    margin-top: 1rem;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#state-select {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    outline: none;
+}
+
+/* Hidden Utility */
+.hidden {
+    display: none !important;
+}
+
+/* Custom Scrollbar for Selector */
+#state-select option {
+    color: #333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .glass-container {
+        width: 100%;
+        height: 100vh;
+        /* Full viewport height */
+        max-width: 100%;
+        border-radius: 0;
+        border: none;
+        border-left: none;
+        border-right: none;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        /* Start from top */
+        overflow-y: auto;
+        /* Allow scrolling */
+        padding-top: 3rem;
+        /* Extra space for top status bar area */
+    }
+
+    body {
+        align-items: flex-start;
+        /* Align top on mobile */
+    }
+
+    .date-display h1 {
+        font-size: 2.8rem;
+    }
+
+    .prayer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Stack on very small screens */
+}
